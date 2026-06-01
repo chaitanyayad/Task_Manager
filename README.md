@@ -1,4 +1,4 @@
-# My First CRUD App — Task Manager
+#  Task Manager (CRUD APP)
 
 > This is the most basic CRUD application you can build — a task manager.
 > The entire point of this project is to learn how data flows: from a browser input, through a React component, over HTTP to a Python API, into a NoSQL database, and back again. There are no shortcuts, no magic frameworks hiding the wiring. Every layer is exposed on purpose.

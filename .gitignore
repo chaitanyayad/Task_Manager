@@ -1,0 +1,12 @@
+# Python
+__pycache__/
+*.pyc
+crud/
+.env
+
+# Node
+node_modules/
+task-frontend/dist/
+
+# VS Code
+.vscode/

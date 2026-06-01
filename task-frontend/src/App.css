@@ -1,0 +1,170 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: sans-serif;
+  background: #1a0533;
+}
+
+.scene {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a0533 0%, #2d0a4e 40%, #1e0a3c 70%, #3d0a3a 100%);
+  isolation: isolate;
+}
+
+.bg-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.app {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  width: 90%;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.app-title { font-size: 32px; font-weight: 500; color: #fff; margin-bottom: 0.5rem; }
+.app-sub { font-size: 13px; color: rgba(255,255,255,0.45); margin-bottom: 2rem; }
+
+.cursor {
+  animation: blink 1s step-end infinite;
+  color: rgba(255,255,255,0.5);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.add-form { display: flex; gap: 8px; margin-bottom: 2rem; }
+.add-form input {
+  flex: 1; height: 38px; padding: 0 12px;
+  border: 0.5px solid rgba(255,255,255,0.15);
+  border-radius: 10px;
+  background: rgba(255,255,255,0.07);
+  color: #fff; font-size: 14px; outline: none;
+}
+.add-form input::placeholder { color: rgba(255,255,255,0.3); }
+.add-form input:focus { border-color: rgba(180,100,255,0.6); }
+
+
+.task-list { display: flex; flex-direction: column; gap: 6px; }
+
+.task-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px 14px; border-radius: 12px;
+  border: 0.5px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.06);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.task-item.fading { opacity: 0; transform: translateY(-6px); }
+
+.cb {
+  width: 20px; height: 20px; border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.3);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; flex-shrink: 0; margin-top: 1px;
+  transition: background 0.2s, border-color 0.2s;
+}
+.cb.checked { background: linear-gradient(135deg, #a855f7, #ec4899); border-color: transparent; }
+.ck { font-size: 11px; color: #fff; }
+
+.task-content { flex: 1; min-width: 0; }
+.task-title { font-size: 14px; font-weight: 500; color: #fff; }
+.task-title.done { text-decoration: line-through; color: rgba(255,255,255,0.3); }
+.task-desc { font-size: 12px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+
+.edit-btn {
+  background: none; border: none; cursor: pointer;
+  color: rgba(255,255,255,0.3); font-size: 16px; padding: 2px;
+}
+.edit-btn:hover { color: rgba(255,255,255,0.8); }
+
+.edit-inputs { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.edit-inputs input {
+  height: 32px; padding: 0 10px;
+  border: 0.5px solid rgba(180,100,255,0.4);
+  border-radius: 8px; background: rgba(255,255,255,0.07);
+  color: #fff; font-size: 13px; outline: none;
+}
+.edit-actions { display: flex; gap: 6px; margin-top: 4px; }
+.save-btn {
+  height: 28px; padding: 0 12px; border: none; border-radius: 7px;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: #fff; font-size: 12px; cursor: pointer;
+}
+.cancel-btn {
+  height: 28px; padding: 0 12px;
+  border: 0.5px solid rgba(255,255,255,0.15);
+  border-radius: 7px; background: none;
+  color: rgba(255,255,255,0.5); font-size: 12px; cursor: pointer;
+}
+
+.loading { color: #fff; padding: 2rem; text-align: center; }
+
+.section-label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.done-item { opacity: 0.4; }
+
+.add-btn {
+  height: 38px; padding: 0 16px;
+  border: none; border-radius: 10px;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  color: #fff; font-size: 14px; cursor: pointer; white-space: nowrap;
+  position: relative;
+  z-index: 0;
+}
+
+.add-btn::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #ff0000, #ff7700, #ffff00, #00ff00, #0000ff, #8b00ff, #ff0000);
+  background-size: 300% 100%;
+  z-index: -2;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: rainbowBorder 2s linear infinite;
+}
+
+.add-btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #a855f7, #ec4899);
+  z-index: -1;
+}
+
+.add-btn:hover::before {
+  opacity: 1;
+}
+
+@keyframes rainbowBorder {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+
+.delete-btn {
+  background: none; border: none; cursor: pointer;
+  color: rgba(255,255,255,0.2); font-size: 14px; padding: 2px;
+  transition: color 0.2s;
+}
+
+.delete-btn:hover {
+  color: #ec4899;
+}
